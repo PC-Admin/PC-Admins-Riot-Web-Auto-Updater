@@ -133,9 +133,10 @@ if "Good signature from" in stdoutdata:
 	stdoutdata = subprocess.getoutput("sudo cp -r /home/pcadmin/autoupdateriot/tocopy/* /usr/share/nginx/html/")
 	print(stdoutdata)
 
-	print("Restarting Nginx service...")
-	stdoutdata = subprocess.getoutput("sudo service nginx restart")
-	print(stdoutdata)
+	# Not needed, thanks @tulir!
+	#print("Restarting Nginx service...")
+	#stdoutdata = subprocess.getoutput("sudo service nginx restart")
+	#print(stdoutdata)
 
 	# Clean up riot files!
 	print("Cleaning up files...")
