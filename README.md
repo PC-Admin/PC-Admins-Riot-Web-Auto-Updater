@@ -18,11 +18,21 @@ $ mkdir ~/autoupdateriot
 
 $ mkdir ~/autoupdateriot/tocopy
 
-$ touch ~/update_riot.log
+$ touch ~/autoupdateriot/update_riot.log
 
-Place the autoupdateriot.py script into ~/autoupdateriot
+Place the autoupdateriot.py script into ~/autoupdateriot, go through the script and replace 'username' with your desired username.
 
 Place your own custom config.json for riot into ~/autoupdateriot/tocopy
+
+Configure Visudo to allow the chosen username to complete like so:
+
+```
+# Cmnd alias specification
+Cmnd_Alias AUTOUPDATERIOT = /bin/rm -r /usr/share/nginx/html/*, /bin/cp -r /home/username/autoupdateriot/* /usr/share/nginx/html/
+
+# username on this host can run commands as root without a password:
+username ALL = (root) NOPASSWD: AUTOUPDATERIOT
+```
 
 ***
 ## Install beautifulsoup4

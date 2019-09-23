@@ -8,6 +8,13 @@
 #
 # Needs crontab:
 # 0 0 1 * * /usr/bin/python3 /home/username/autoupdateriot/autoupdateriot.py
+#
+# Visudo configuration:
+# # Cmnd alias specification
+# Cmnd_Alias AUTOUPDATERIOT = /bin/rm -r /usr/share/nginx/html/*, /bin/cp -r /home/username/autoupdateriot/* /usr/share/nginx/html/
+#
+# # username on this host can run commands as root without a password:
+# username ALL = (root) NOPASSWD: AUTOUPDATERIOT
 
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
@@ -126,11 +133,11 @@ if "Good signature from" in stdoutdata:
 	print(stdoutdata)
 
 	print("Copying new riot-web files over...")
-	stdoutdata = subprocess.getoutput("sudo cp -r ./" + riot_version + "/* /usr/share/nginx/html/")
+	stdoutdata = subprocess.getoutput("sudo cp -r /home/username/autoupdateriot/" + riot_version + "/* /usr/share/nginx/html/")
 	print(stdoutdata)
 
 	print("Copying new modification files over...")
-	stdoutdata = subprocess.getoutput("sudo cp -r /home/pcadmin/autoupdateriot/tocopy/* /usr/share/nginx/html/")
+	stdoutdata = subprocess.getoutput("sudo cp -r /home/username/autoupdateriot/tocopy/* /usr/share/nginx/html/")
 	print(stdoutdata)
 
 	# Not needed, thanks @tulir!
@@ -140,7 +147,7 @@ if "Good signature from" in stdoutdata:
 
 	# Clean up riot files!
 	print("Cleaning up files...")
-	stdoutdata = subprocess.getoutput("rm -r ./riot-*")
+	stdoutdata = subprocess.getoutput("rm -r /home/username/autoupdateriot/riot-*")
 	print(stdoutdata)
 
 	todays_date = datetime.datetime.today().strftime('%Y-%m-%d')
@@ -149,7 +156,7 @@ if "Good signature from" in stdoutdata:
 	update_string = "Riot-web code update on " + todays_date + " to version: " + riot_version
 
 	print("\nAppending to log...")
-	stdoutdata = subprocess.getoutput("echo " + update_string + " >> /home/pcadmin/update_riot.log")
+	stdoutdata = subprocess.getoutput("echo " + update_string + " >> /home/username/autoupdateriot/update_riot.log")
 	#print(stdoutdata)
 
 elif "Good signature from" not in stdoutdata:
@@ -157,7 +164,7 @@ elif "Good signature from" not in stdoutdata:
 
 	print("\nAppending to log...")
 	todays_date = datetime.datetime.today().strftime('%Y-%m-%d')
-	stdoutdata = subprocess.getoutput("echo ERROR: GPG check failed on " + todays_date + " >> /home/pcadmin/update_riot.log")
+	stdoutdata = subprocess.getoutput("echo ERROR: GPG check failed on " + todays_date + " >> /home/username/autoupdateriot/update_riot.log")
 	#print(stdoutdata)
 
 
