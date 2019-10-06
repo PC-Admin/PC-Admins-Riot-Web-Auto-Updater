@@ -28,7 +28,7 @@ Configure Visudo to allow the chosen username to complete like so:
 
 ```
 # Cmnd alias specification
-Cmnd_Alias AUTOUPDATERIOT = /bin/rm -r /usr/share/nginx/html/*, /bin/cp -r /home/username/autoupdateriot/* /usr/share/nginx/html/
+Cmnd_Alias AUTOUPDATERIOT = /bin/rm -r /usr/share/nginx/html/*, /bin/cp -r * /usr/share/nginx/html/
 
 # username on this host can run commands as root without a password:
 username ALL = (root) NOPASSWD: AUTOUPDATERIOT
