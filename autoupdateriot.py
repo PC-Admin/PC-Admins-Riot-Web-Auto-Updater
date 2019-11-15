@@ -15,6 +15,10 @@
 #
 # # username on this host can run commands as root without a password:
 # username ALL = (root) NOPASSWD: AUTOUPDATERIOT
+#
+# created by @PC-Admin:perthchat.org
+#
+# This work is licensed under LGPLv3, for more information see: https://www.gnu.org/licenses/lgpl-3.0.txt
 
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
