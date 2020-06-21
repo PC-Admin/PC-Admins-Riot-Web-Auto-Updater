@@ -53,4 +53,3 @@ Needs crontab:
 @weekly /usr/bin/python3 /home/username/autoupdateriot/autoupdateriot.py
 
 
-
